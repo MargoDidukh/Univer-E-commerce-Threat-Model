@@ -120,6 +120,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -203,7 +204,6 @@
               ]
             },
             "id": "586d0ba2-22c6-4b07-be34-3565edfb9f4a",
-            "zIndex": 1,
             "data": {
               "type": "tm.Process",
               "name": "Web \nApplication",
@@ -397,6 +397,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 11,
             "ports": {
               "groups": {
                 "top": {
@@ -480,7 +481,6 @@
               ]
             },
             "id": "636566cf-db92-451b-98ce-d52033f0c1df",
-            "zIndex": 11,
             "data": {
               "type": "tm.Actor",
               "name": "Customer",
@@ -514,6 +514,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 13,
             "ports": {
               "groups": {
                 "top": {
@@ -597,7 +598,6 @@
               ]
             },
             "id": "8a798542-61eb-4008-a126-7601e091d17b",
-            "zIndex": 13,
             "data": {
               "type": "tm.Actor",
               "name": "Payment\n Gateway",
@@ -636,6 +636,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 14,
             "ports": {
               "groups": {
                 "top": {
@@ -719,7 +720,6 @@
               ]
             },
             "id": "bf459537-ab84-4873-a29c-61e8c25ecfe3",
-            "zIndex": 14,
             "data": {
               "type": "tm.Store",
               "name": "Database",
@@ -760,7 +760,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -781,13 +782,32 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "HTTPS/API",
-              "threats": [],
-              "trustBoundaryIds": []
+              "threats": [
+                {
+                  "id": "66cd444f-1c3e-4318-ba86-3058a51fd749",
+                  "title": "Denial of Service During Peak Traffic",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "A sudden traffic spike or malicious requests may overload the application or exhaust payment API limits, interrupting checkout during a high-demand event such as Black Friday.",
+                  "mitigation": "Use rate limiting, WAF/CDN protection, monitoring, timeouts, bounded retries with exponential backoff, queues and circuit breakers. Plan capacity for peak demand.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "Payment API Call"
@@ -803,6 +823,10 @@
             },
             "vertices": [
               {
+                "x": 270,
+                "y": 400
+              },
+              {
                 "x": 274.75,
                 "y": 440
               }
@@ -814,6 +838,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 5
+    "threatTop": 6
   }
 }
